@@ -44,3 +44,5 @@ void take_data(int employee_amount)
         salary_cal(employees[i].id,employees[i].hours,employees[i].salary);
     }
 }
+
+//new stuff
