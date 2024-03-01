@@ -45,5 +45,4 @@ void take_data(int employee_amount)
     }
 }
 
-// testing
-// 1235
+
