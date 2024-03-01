@@ -45,4 +45,4 @@ void take_data(int employee_amount)
     }
 }
 
-
+//ngu
