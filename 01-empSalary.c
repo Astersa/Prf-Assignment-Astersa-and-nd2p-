@@ -8,8 +8,8 @@ struct employee{
     long id,hours;
     long salary;
     bool gender;
-    firstName[Max];
-    secondName[Max];
+    char firstName[Max];
+    char secondName[Max];
 };
 
 void take_data();
