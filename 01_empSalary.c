@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdbool.h>
-
 #define bool _Bool
 #define Max 50
 
@@ -16,7 +15,6 @@ void take_data();
 void salary_cal();
 int main()
 {
-    
     int employee_amount;
     printf("Input the amount of employee in company: ");
     scanf("%d",&employee_amount);
@@ -45,4 +43,4 @@ void take_data(int employee_amount)
     }
 }
 
-//new stuff
+
