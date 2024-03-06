@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define bool _Bool
+
 #define Max 50
 
 struct employee{
