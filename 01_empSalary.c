@@ -4,62 +4,96 @@
 #define Max 50
 
 struct employee{
-    long id;
+    char id[Max];
     long salary;
     char gender[Max];
     char firstName[Max];
     char lastName[Max];
 };
 
-void take_data();
-void salary_cal();
+struct employee emp[100];
 
-
-
+//Function define:
+void take_data(int employee_amount);
+int menu();
+void change_salary(int imployee_amount);
 
 int main()
 {
     int employee_amount;
     printf("Input the amount of employee in company: ");
     scanf("%d",&employee_amount);
-    take_data(employee_amount);
-    return 0;
+    
+
+    int userChoice;
+    do{
+        userChoice = menu();
+        switch (userChoice)
+        {
+        case 1:
+            take_data(employee_amount);
+            break;
+    
+        case 2:
+            change_salary(employee_amount);
+    
+        default:
+            printf ("Invalid Choice. Choose again!\n");
+            break;
+        } 
+    } while (userChoice != 4);
 }
 
-
-
-
-void salary_cal(int id, int hours, long salary)
-{    
-    float total_salary = (float)salary*hours;
-    printf("Emplyees ID: %d\n",id);
-    printf("Salary = U$ %.2f\n",total_salary);
+//Functions below://
+//Menu:
+int menu()
+{
+    printf ("\nMENU\n");
+    printf ("1. Nhap thong tin nhan vien.\n");
+    printf ("2. Sua thong tin luong nhan vien.\n");
+    printf ("3. Sua thong tin ho va ten nhan vien.\n");
+    printf ("4. Quit.\n");
+    printf ("Your choice: ");
+    int choice;
+    scanf ("%d", &choice);
+    return choice;
 }
 
-
-
-
+//Function1: Nhap thong tin nhan vien
 void take_data(int employee_amount)    
 {
-    struct employee employees[employee_amount];
     int i = 0;
     for (i; i<employee_amount;i++){
         printf ("Input the %d Employee ID: ", i+1);
-        scanf ("%d",&employees[i].id);
+        scanf ("%s", emp[i].id);
         
         printf ("Input the %d Employee's last name: ", i+1);
-        scanf ("%s", employees[i].lastName);
+        scanf ("%s", emp[i].lastName);
         
         printf ("Input the %d Employee's first name: ", i+1);
-        scanf ("%s", employees[i].firstName);
+        scanf ("%s", emp[i].firstName);
         
-        printf ("Input the %d Employee's gender: ", i+1);
-        scanf ("%s", employees[i].gender);
+        printf ("Input the %d Employee's gender (Male or Female): ", i+1);
+        scanf ("%s", emp[i].gender);
         
         printf ("Input the %d Employee's salary: ", i+1);
-        scanf ("%lf", &employees[i].salary);
+        scanf ("%lf", &emp[i].salary);
+        printf ("\n");
     }
 }
 
-
+//Funtion2: Sua thong tin luong
+void change_salary (int employee_amount){
+    char id[Max];
+    printf ("Input employee's ID: ");
+    scanf ("%s", id);
+    for (int i=0; i<employee_amount; i++){
+        if (strcmp(emp[i].id, id)==0) {
+            printf("Input new salary: ");
+            scanf("%s", emp[i].salary);
+            printf("Change employee's salary successfully!\n");
+            return;
+        }
+    }
+}
 
