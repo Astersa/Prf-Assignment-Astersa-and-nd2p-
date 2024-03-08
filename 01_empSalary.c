@@ -5,7 +5,7 @@
 
 struct employee{
     char id[Max];
-    long salary;
+    double salary;
     char gender[Max];
     char firstName[Max];
     char lastName[Max];
@@ -16,7 +16,7 @@ struct employee emp[100];
 //Function define:
 void take_data(int employee_amount);
 int menu();
-void change_salary(int imployee_amount);
+void change_salary (int employee_amount);
 
 int main()
 {
@@ -36,12 +36,16 @@ int main()
     
         case 2:
             change_salary(employee_amount);
-    
+            break;
+        
+        case 11:
+            printf ("Programm exited.");
+        
         default:
             printf ("Invalid Choice. Choose again!\n");
             break;
         } 
-    } while (userChoice != 4);
+    } while (userChoice != 11);
 }
 
 //Functions below://
@@ -52,7 +56,7 @@ int menu()
     printf ("1. Nhap thong tin nhan vien.\n");
     printf ("2. Sua thong tin luong nhan vien.\n");
     printf ("3. Sua thong tin ho va ten nhan vien.\n");
-    printf ("4. Quit.\n");
+    printf ("11. Quit.\n");
     printf ("Your choice: ");
     int choice;
     scanf ("%d", &choice);
@@ -87,13 +91,16 @@ void change_salary (int employee_amount){
     char id[Max];
     printf ("Input employee's ID: ");
     scanf ("%s", id);
+    
     for (int i=0; i<employee_amount; i++){
         if (strcmp(emp[i].id, id)==0) {
             printf("Input new salary: ");
-            scanf("%s", emp[i].salary);
+            scanf("%lf", &emp[i].salary);
             printf("Change employee's salary successfully!\n");
+            // printf ("%.2lf", emp[i].salary); CheckingFunction
             return;
         }
-    }
+        printf ("Can not find the employee"); 
+    }   
 }
 
