@@ -15,20 +15,18 @@ struct employee emp[100];
 
 //Function define:
 int menu ();
-void take_data (int employee_amount);
+void take_data (int emp_amount, int *employee_amount);
 void change_salary (int employee_amount);
 void change_name (int employee_amount);
-void delete_emp(int employee_amount);
+void delete_emp(int emp_amount, int *employee_amount);
 void printAll_emp (int employee_amount);
 
 
 //MAIN
 int main ()
 {
-    int employee_amount;
-    printf("Input the amount of employee in company: ");
-    scanf("%d",&employee_amount);
-    
+    int employee_amount=0;
+    int emp_amount = employee_amount;
 
     int userChoice;
     do{
@@ -36,7 +34,7 @@ int main ()
         switch (userChoice)
         {
         case 1:
-            take_data(employee_amount);
+            take_data(emp_amount, &employee_amount);
             break;
     
         case 2:
@@ -48,7 +46,7 @@ int main ()
             break;
 
         case 4:
-            delete_emp(employee_amount);
+            delete_emp(emp_amount, &employee_amount);
             break;
 
         case 7:
@@ -83,10 +81,16 @@ int menu ()
 }
 
 //Function1: Nhap thong tin nhan vien
-void take_data (int employee_amount)
+void take_data (int emp_amount, int *employee_amount)
 {
-    int i = 0;
-    for (i; i<employee_amount;i++){
+    int cur;
+    do{
+        printf("The amount of employee you want to add: ");
+        scanf("%d", &cur);
+    } while (cur<0);
+    
+    int i = emp_amount;
+    for (i; i<emp_amount+cur;i++){
         printf ("Input the No.%d Employee ID: ", i+1);
         scanf ("%s", emp[i].id);
         
@@ -103,6 +107,7 @@ void take_data (int employee_amount)
         scanf ("%lf", &emp[i].salary);
         printf ("\n");
     }
+    *employee_amount = emp_amount + cur;
 }
 
 //Funtion2: Sua thong tin luong
@@ -151,19 +156,19 @@ void change_name (int employee_amount)
 }
 
 //Function 4: Xoa nhan vien
-void delete_emp (int employee_amount)
+void delete_emp (int emp_amount, int *employee_amount)
 {
     char id[Max];
     printf ("Input employee's ID: ");
     scanf ("%s", id);
     
     int count=0;//neu khac ko -> tim duoc ma nhan vien
-    for (int i=0; i<employee_amount; i++){
+    for (int i=0; i<emp_amount; i++){
         if (strcmp(emp[i].id, id)==0) {
-            for (int j=i; j<employee_amount; j++){
+            for (int j=i; j<emp_amount; j++){
                 emp[j] = emp[j+1];
             }
-            employee_amount-=1;
+            *employee_amount-=1;
             count++;
             return;
         } 
@@ -171,7 +176,7 @@ void delete_emp (int employee_amount)
 	if (count == 0) printf ("Can not find the employee");  
 }
 
-//Function7: xuat tat ca NhanVien
+//Function7: xuat tat ca Nhan Vien 
 void printAll_emp (int employee_amount)
 {
     for (int i=0; i<employee_amount; i++){
