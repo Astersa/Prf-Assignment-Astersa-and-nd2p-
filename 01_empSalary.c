@@ -345,7 +345,7 @@ void salaryRangeExport(int employee_amount)
     }
 }
 
-// Function 9: Xuất Lương trung bình, Lương cao nhất, Lương thấp nhất
+// Function 10: Xuất Lương trung bình, Lương cao nhất, Lương thấp nhất
 void optionalExport(int employee_amount)
 {
     int i, userInput;
