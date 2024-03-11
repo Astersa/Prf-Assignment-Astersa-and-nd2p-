@@ -241,17 +241,17 @@ void salaryDecreaseSorting(int employee_amount)
 // Function 6: Sắp xếp danh sách tăng dần theo Tên nhân viên
 void nameIncreaseSorting(int employee_amount)
 {
-    char temp[Max];
+    char temp = Max + 1;
     int i, j;
     for (i = 0; i < employee_amount; i++)
     {
         for (j = i + 1; j < employee_amount; j++)
         {
-             if (strcmp(emp[i].firstName, emp[j].firstName) > 0)
+            if (strcmp(emp[i].firstName, emp[j].firstName) > 0)
             {
-                strcpy(temp, emp[i].firstName);
-                strcpy(emp[i].firstName, emp[j].firstName);
-                strcpy(emp[j].firstName, temp);
+                emp[temp] = emp[i];
+                emp[i] = emp[j];
+                emp[j] = emp[temp];
             }
         }
     }
