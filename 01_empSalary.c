@@ -106,8 +106,12 @@ int menu()
     printf("10. Show the average salary,the highest salary and the lowest salary.\n");
     printf("11. Quit.\n");
     printf("Your choice: ");
+    
     int choice;
-    scanf("%d", &choice);
+    while (scanf("%d", &choice) != 1) {
+        printf("Input error. Please enter an integer: ");
+        while (getchar() != '\n'); 
+    }
     return choice;
 }
 
