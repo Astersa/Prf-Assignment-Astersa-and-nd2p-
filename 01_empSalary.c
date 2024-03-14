@@ -85,6 +85,27 @@ int main()
             printf("Invalid Choice. Choose again!\n");
             break;
         }
+        if(userChoice == 11){
+            return 0;
+        }
+        char lastDecision;
+        printf("Do you want to countinue: Y/N");
+        scanf(" %c", &lastDecision);
+        if (lastDecision == 'Y'||lastDecision=='y')
+        {
+            continue;
+        }
+        else if (lastDecision == 'N'||lastDecision=='n')
+        {
+            printf("Programm exited.");
+            break;
+        }
+        else
+        {
+            printf("Invalid input. Program's forced to out!");
+            return 0;
+        }
+
     } while (userChoice != 11);
 }
 
@@ -125,11 +146,11 @@ void take_data(int emp_amount, int *employee_amount)
         printf("Input the No.%d Employee ID: ", i + 1);
         scanf("%s", emp[i].id);
 
-        printf("Input the No.%d Employee's last name: ", i + 1);
-        scanf("%s", emp[i].lastName);
-
         printf("Input the No.%d Employee's first name: ", i + 1);
         scanf("%s", emp[i].firstName);
+
+        printf("Input the No.%d Employee's last name: ", i + 1);
+        scanf("%s", emp[i].lastName);
 
         printf("Input the No.%d Employee's gender (Male or Female): ", i + 1);
         scanf("%s", emp[i].gender);
@@ -265,11 +286,11 @@ void printAll_emp(int employee_amount)
         printf("The No.%d Employee ID: ", i + 1);
         printf("%s\n", emp[i].id);
 
-        printf("The No.%d Employee's last name: ", i + 1);
-        printf("%s\n", emp[i].lastName);
-
         printf("The No.%d Employee's first name: ", i + 1);
         printf("%s\n", emp[i].firstName);
+
+        printf("The No.%d Employee's last name: ", i + 1);
+        printf("%s\n", emp[i].lastName);
 
         printf("The No.%d Employee's gender (Male or Female): ", i + 1);
         printf("%s\n", emp[i].gender);
