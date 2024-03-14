@@ -90,7 +90,7 @@ int main()
             return 0;
         }
         char lastDecision;
-        printf("Do you want to countinue: Y/N");
+        printf("Do you want to countinue(Y/N): ");
         scanf(" %c", &lastDecision);
         if (lastDecision == 'Y'||lastDecision=='y')
         {
