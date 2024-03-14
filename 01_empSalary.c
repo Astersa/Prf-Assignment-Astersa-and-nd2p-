@@ -27,6 +27,7 @@ void printAll_emp();
 void idExport();
 void salaryRangeExport();
 void optionalExport();
+void scanAndcheck ();
 
 // MAIN
 int main()
@@ -126,8 +127,12 @@ int menu()
     printf("10. Show the average salary,the highest salary and the lowest salary.\n");
     printf("11. Quit.\n");
     printf("Your choice: ");
+    
     int choice;
-    scanf("%d", &choice);
+    while (scanf("%d", &choice) != 1) {
+        printf("Input error. Please enter an integer: ");
+        while (getchar() != '\n'); 
+    }
     return choice;
 }
 
@@ -147,13 +152,13 @@ void take_data(int emp_amount, int *employee_amount)
         scanf("%s", emp[i].id);
 
         printf("Input the No.%d Employee's first name: ", i + 1);
-        scanf("%s", emp[i].firstName);
+        scanAndcheck (emp->firstName);
 
         printf("Input the No.%d Employee's last name: ", i + 1);
-        scanf("%s", emp[i].lastName);
-
+        scanAndcheck (emp->lastName);
+        
         printf("Input the No.%d Employee's gender (Male or Female): ", i + 1);
-        scanf("%s", emp[i].gender);
+        scanAndcheck (emp->gender);
 
         printf("Input the No.%d Employee's salary: ", i + 1);
         scanf("%lf", &emp[i].salary);
@@ -411,3 +416,27 @@ void optionalExport(int employee_amount)
         break;
     }
 };
+
+//Function: check digit
+void scanAndcheck (char emp[]){
+    scanf ("%s", emp);
+	
+	int i, hasDigit = 0;
+    for (i = 0; emp[i] != '\0'; ++i) {
+        if (isdigit(emp[i])) {
+            hasDigit = 1;
+            break;
+        }
+    }
+    while (hasDigit) {
+        printf("Input again: ");
+        scanf ("%s", emp);
+        hasDigit = 0;
+        for (i = 0; emp[i] != '\0'; ++i) {
+            if (isdigit(emp[i])) {
+                hasDigit = 1;
+                break;
+            }
+        }
+    }
+}
