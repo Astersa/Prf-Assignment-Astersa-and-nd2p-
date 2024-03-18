@@ -27,7 +27,7 @@ void printAll_emp();
 void idExport();
 void salaryRangeExport();
 void optionalExport();
-void scanAndcheck ();
+void scanAndcheck();
 
 // MAIN
 int main()
@@ -78,7 +78,7 @@ int main()
             optionalExport(employee_amount);
             break;
 
-        case 11:
+        case 0:
             printf("Programm exited.");
             break;
 
@@ -86,17 +86,22 @@ int main()
             printf("Invalid Choice. Choose again!\n");
             break;
         }
-        if(userChoice == 11){
+        if (userChoice == 0)
+        {
             return 0;
         }
-        char lastDecision;
+        char lastDecision[4];
         printf("Do you want to countinue(Y/N): ");
-        scanf(" %c", &lastDecision);
-        if (lastDecision == 'Y'||lastDecision=='y')
+        scanf("%s", lastDecision);
+        for (int i = 0; i < 4; i++)
+        {
+            lastDecision[i] = tolower(lastDecision[i]);
+        };
+        if (strcmp(lastDecision,"yes")==0 || strcmp(lastDecision,"y")==0)
         {
             continue;
         }
-        else if (lastDecision == 'N'||lastDecision=='n')
+        else if (strcmp(lastDecision,"no") == 0 || strcmp(lastDecision,"n")==0)
         {
             printf("Programm exited.");
             break;
@@ -125,13 +130,15 @@ int menu()
     printf("8. Export employee's information with ID.\n");
     printf("9. Export employee's data in a salary range.\n");
     printf("10. Show the average salary,the highest salary and the lowest salary.\n");
-    printf("11. Quit.\n");
+    printf("0. Quit.\n");
     printf("Your choice: ");
-    
+
     int choice;
-    while (scanf("%d", &choice) != 1) {
+    while (scanf("%d", &choice) != 1)
+    {
         printf("Input error. Please enter an integer: ");
-        while (getchar() != '\n'); 
+        while (getchar() != '\n')
+            ;
     }
     return choice;
 }
@@ -148,28 +155,34 @@ void take_data(int emp_amount, int *employee_amount)
     int i = emp_amount;
     char gen_man[10] = "Male";
     char gen_woman[10] = "Female";
-    int dem=0;
+    int count = 0;
     for (i; i < emp_amount + cur; i++)
     {
         printf("Input the No.%d Employee ID: ", i + 1);
         scanf("%s", emp[i].id);
 
         printf("Input the No.%d Employee's first name: ", i + 1);
-        scanAndcheck (emp->firstName);
+        scanAndcheck(emp->firstName);
+        emp[i].firstName[0] = toupper(emp[i].firstName[0]);
+
 
         printf("Input the No.%d Employee's last name: ", i + 1);
-        scanAndcheck (emp->lastName);
-        
+        scanAndcheck(emp->lastName);
+        emp[i].lastName[0] = toupper(emp[i].lastName[0]);
+
+
         printf("Input the No.%d Employee's gender (Male or Female): ", i + 1);
-        do{
-            if (dem!=0){
+        do
+        {
+            if (count != 0)
+            {
                 printf("Input again: ");
             }
-            dem++;
-            scanAndcheck (emp->gender);
-            
-        } while (strcmp(emp->gender, gen_man)!=0 && strcmp(emp->gender, gen_woman)!=0);
-       
+            count++;
+            scanAndcheck(emp->gender);
+            emp[i].gender[0] = toupper(emp[i].gender[0]);
+
+        } while (strcmp(emp->gender, gen_man) != 0 && strcmp(emp->gender, gen_woman) != 0);
 
         printf("Input the No.%d Employee's salary: ", i + 1);
         scanf("%lf", &emp[i].salary);
@@ -428,23 +441,29 @@ void optionalExport(int employee_amount)
     }
 };
 
-//Function: check digit
-void scanAndcheck (char emp[]){
-    scanf ("%s", emp);
-	
-	int i, hasDigit = 0;
-    for (i = 0; emp[i] != '\0'; ++i) {
-        if (isdigit(emp[i])) {
+// Function: check digit
+void scanAndcheck(char emp[])
+{
+    scanf("%s", emp);
+
+    int i, hasDigit = 0;
+    for (i = 0; emp[i] != '\0'; ++i)
+    {
+        if (isdigit(emp[i]))
+        {
             hasDigit = 1;
             break;
         }
     }
-    while (hasDigit) {
+    while (hasDigit)
+    {
         printf("Input again: ");
-        scanf ("%s", emp);
+        scanf("%s", emp);
         hasDigit = 0;
-        for (i = 0; emp[i] != '\0'; ++i) {
-            if (isdigit(emp[i])) {
+        for (i = 0; emp[i] != '\0'; ++i)
+        {
+            if (isdigit(emp[i]))
+            {
                 hasDigit = 1;
                 break;
             }
