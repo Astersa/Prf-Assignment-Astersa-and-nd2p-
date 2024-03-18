@@ -146,6 +146,9 @@ void take_data(int emp_amount, int *employee_amount)
         scanf("%d", &cur);
     } while (cur < 0);
     int i = emp_amount;
+    char gen_man[10] = "Male";
+    char gen_woman[10] = "Female";
+    int dem=0;
     for (i; i < emp_amount + cur; i++)
     {
         printf("Input the No.%d Employee ID: ", i + 1);
@@ -158,7 +161,15 @@ void take_data(int emp_amount, int *employee_amount)
         scanAndcheck (emp->lastName);
         
         printf("Input the No.%d Employee's gender (Male or Female): ", i + 1);
-        scanAndcheck (emp->gender);
+        do{
+            if (dem!=0){
+                printf("Input again: ");
+            }
+            dem++;
+            scanAndcheck (emp->gender);
+            
+        } while (strcmp(emp->gender, gen_man)!=0 && strcmp(emp->gender, gen_woman)!=0);
+       
 
         printf("Input the No.%d Employee's salary: ", i + 1);
         scanf("%lf", &emp[i].salary);
