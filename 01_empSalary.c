@@ -59,11 +59,11 @@ int main()
             break;
         case 5:
             salaryDecreaseSorting(employee_amount);
-            printf("The data has done sorted!");
+            printf("The data has done sorted!\n");
             break;
         case 6:
             nameIncreaseSorting(employee_amount);
-            printf("The data has done sorted!");
+            printf("The data has done sorted!\n");
             break;
         case 7:
             printAll_emp(employee_amount);
@@ -79,7 +79,7 @@ int main()
             break;
 
         case 0:
-            printf("Programm exited.");
+            printf("Programm exited.\n");
             break;
 
         default:
@@ -155,7 +155,6 @@ void take_data(int emp_amount, int *employee_amount)
     int i = emp_amount;
     char gen_man[10] = "Male";
     char gen_woman[10] = "Female";
-    int count = 0;
     for (i; i < emp_amount + cur; i++)
     {
         int count = 0;
@@ -163,11 +162,11 @@ void take_data(int emp_amount, int *employee_amount)
         scanf("%s", emp[i].id);
 
         printf("Input the No.%d Employee's first name: ", i + 1);
-        scanf("%s", emp[i].firstName);// scanAndcheck(emp->firstName);
+        scanAndcheck(emp[i].firstName);
         emp[i].firstName[0] = toupper(emp[i].firstName[0]);
 
         printf("Input the No.%d Employee's last name: ", i + 1);
-        scanf("%s", emp[i].lastName);// scanAndcheck(emp->lastName);
+        scanAndcheck(emp[i].lastName);
         emp[i].lastName[0] = toupper(emp[i].lastName[0]);
 
         printf("Input the No.%d Employee's gender (Male or Female): ", i + 1);
@@ -179,10 +178,10 @@ void take_data(int emp_amount, int *employee_amount)
                 printf("Input again: ");
             }
             count++;
-            scanf("%s", emp[i].gender);// scanAndcheck(emp->gender);
+            scanAndcheck(emp[i].gender);
             emp[i].gender[0] = toupper(emp[i].gender[0]);
 
-        } while (strcmp(emp->gender, gen_man) != 0 && strcmp(emp->gender, gen_woman) != 0);
+        } while (strcmp(emp[i].gender, gen_man) != 0 && strcmp(emp[i].gender, gen_woman) != 0);
 
         printf("Input the No.%d Employee's salary: ", i + 1);
         scanf("%lf", &emp[i].salary);
@@ -211,7 +210,7 @@ void change_salary(int employee_amount)
         }
     }
     if (count == 0)
-        printf("Can not find the employee");
+        printf("Can not find the employee\n");
 }
 
 // Function 3: Sua ho ten nhan vien
@@ -239,7 +238,7 @@ void change_name(int employee_amount)
         }
     }
     if (count == 0)
-        printf("Can not find the employee");
+        printf("Can not find the employee\n");
 }
 
 // Function 4: Xoa nhan vien
@@ -264,7 +263,7 @@ void delete_emp(int emp_amount, int *employee_amount)
         }
     }
     if (count == 0)
-        printf("Can not find the employee.");
+        printf("Can not find the employee.\n");
 }
 
 // Function 5: Sắp xếp danh sách giảm dần theo Lương
@@ -444,32 +443,32 @@ void optionalExport(int employee_amount)
     }
 }
 
-// // Function: check digit
-// void scanAndcheck(char emp[])
-// {
-//     scanf("%s", emp);
+// Function: check digit
+void scanAndcheck(char emp[])
+{
+    scanf("%s", emp);
 
-//     int i, hasDigit = 0;
-//     for (i = 0; emp[i] != '\0'; ++i)
-//     {
-//         if (isdigit(emp[i]))
-//         {
-//             hasDigit = 1;
-//             break;
-//         }
-//     }
-//     while (hasDigit)
-//     {
-//         printf("Input again: ");
-//         scanf("%s", emp);
-//         hasDigit = 0;
-//         for (i = 0; emp[i] != '\0'; ++i)
-//         {
-//             if (isdigit(emp[i]))
-//             {
-//                 hasDigit = 1;
-//                 break;
-//             }
-//         }
-//     }
-// }
+    int i, hasDigit = 0;
+    for (i = 0; emp[i] != '\0'; ++i)
+    {
+        if (isdigit(emp[i]))
+        {
+            hasDigit = 1;
+            break;
+        }
+    }
+    while (hasDigit)
+    {
+        printf("Input again: ");
+        scanf("%s", emp);
+        hasDigit = 0;
+        for (i = 0; emp[i] != '\0'; ++i)
+        {
+            if (isdigit(emp[i]))
+            {
+                hasDigit = 1;
+                break;
+            }
+        }
+    }
+}
